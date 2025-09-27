@@ -1,0 +1,43 @@
+ .catalogo-background {
+            --background: linear-gradient(160deg, #1e3c72, #2a5298, #4facfe);
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+          }
+
+            .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            justify-items: center; 
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto; /* 🔥 centra la grilla dentro del contenedor */
+            }
+
+          /* Forzar máximo 5 columnas en pantallas grandes */
+          @media (min-width: 1400px) {
+            .productos-grid {
+              grid-template-columns: repeat(5, 1fr);
+            }
+          }
+
+          .producto-card {
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            background: #ffffff;
+            width: 100%;
+            max-width: 240px;
+          }
+
+          .producto-imagen {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 12px;
+          }
+
+          .carrito-card {
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            background: #ffffff;
+          }

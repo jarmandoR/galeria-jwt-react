@@ -13,20 +13,21 @@ import {
   IonCardContent,
   IonIcon,
 } from '@ionic/react';
-import { mailOutline, lockClosedOutline } from 'ionicons/icons';
-import { login } from '../services/authService';
+import { personOutline, mailOutline, lockClosedOutline } from 'ionicons/icons';
+import { register } from '../services/authService';
 
-const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
+const Register: React.FC<{ onRegister: () => void }> = ({ onRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      await login(email, password);
-      onLogin();
+      await register(name, email, password);
+      onRegister();
     } catch (error) {
       console.error(error);
-      alert('Error en login');
+      alert('Error en registro');
     }
   };
 
@@ -35,20 +36,31 @@ const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
       {/* Header */}
       <IonHeader translucent>
         <IonToolbar color="primary">
-          <IonTitle className="ion-text-center">Iniciar Sesión</IonTitle>
+          <IonTitle className="ion-text-center">Crear Cuenta</IonTitle>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen className="login-background">
-        {/* Tarjeta centrada */}
-        <IonCard className="login-card">
+      <IonContent fullscreen className="register-background">
+        {/* Tarjeta del formulario */}
+        <IonCard className="register-card">
           <IonCardHeader>
             <IonCardTitle className="ion-text-center">
-              Bienvenido de nuevo 👋
+              Bienvenido 🚀
             </IonCardTitle>
           </IonCardHeader>
 
           <IonCardContent>
+            <IonInput
+              label="Nombre"
+              labelPlacement="floating"
+              fill="outline"
+              clearInput
+              value={name}
+              onIonChange={(e) => setName(e.detail.value!)}
+            >
+              <IonIcon icon={personOutline} slot="start" />
+            </IonInput>
+
             <IonInput
               label="Correo"
               labelPlacement="floating"
@@ -57,6 +69,7 @@ const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
               value={email}
               onIonChange={(e) => setEmail(e.detail.value!)}
               type="email"
+              className="ion-margin-top"
             >
               <IonIcon icon={mailOutline} slot="start" />
             </IonInput>
@@ -77,9 +90,9 @@ const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
               expand="block"
               shape="round"
               className="ion-margin-top"
-              onClick={handleLogin}
+              onClick={handleRegister}
             >
-              Ingresar
+              Registrarme
             </IonButton>
           </IonCardContent>
         </IonCard>
@@ -88,7 +101,7 @@ const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
       <style>
         {`
           /* Fondo con gama de azules */
-          .login-background {
+          .register-background {
             --background: linear-gradient(160deg, #1e3c72, #2a5298, #4facfe);
             display: flex;
             justify-content: center;
@@ -96,7 +109,7 @@ const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
           }
 
           /* Tarjeta centrada */
-          .login-card {
+          .register-card {
             width: 100%;
             max-width: 400px;
             border-radius: 18px;
@@ -119,4 +132,4 @@ const Login: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   );
 };
 
-export default Login;
+export default Register;

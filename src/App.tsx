@@ -7,7 +7,8 @@ import Gallery from './pages/Gallery';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-
+import Register from './pages/Register'; // 👈 ojo aquí
+import Catalogo from './pages/Catalogo';
 /* CSS de Ionic */
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
@@ -37,7 +38,6 @@ const App: React.FC = () => {
   }, []);
 
   if (isLoggedIn === null) {
-    // Mientras carga el estado de sesión
     return <div>Cargando...</div>;
   }
 
@@ -50,10 +50,10 @@ const App: React.FC = () => {
               <Route exact path="/home">
                 <Home />
               </Route>
-                {/* 👇 Nueva ruta */}
               <Route exact path="/gallery">
                 <Gallery />
               </Route>
+
               <Route exact path="/">
                 <Redirect to="/home" />
               </Route>
@@ -63,6 +63,15 @@ const App: React.FC = () => {
               <Route exact path="/login">
                 <Login onLogin={() => setIsLoggedIn(true)} />
               </Route>
+
+              {/* 👇 Nueva ruta para el registro */}
+              <Route exact path="/register">
+                <Register onRegister={() => setIsLoggedIn(true)} />
+              </Route>
+              <Route exact path="/catalogo">
+                <Catalogo />
+              </Route>
+
               <Route exact path="/">
                 <Redirect to="/login" />
               </Route>
