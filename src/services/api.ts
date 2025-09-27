@@ -4,8 +4,9 @@ import { Preferences } from '@capacitor/preferences';
 
 // Configuración base de Axios
 const api = axios.create({
-  baseURL: 'http://10.0.2.2:3000/api', // Android emulador -> 10.0.2.2
+  //baseURL: 'http://10.0.2.2:3000/api', // Android emulador -> 10.0.2.2
   // Si pruebas en navegador, cambia a http://localhost:3000/api
+  baseURL: 'http://localhost:3000',
 });
 
 // Interceptor para adjuntar el token JWT a cada request
